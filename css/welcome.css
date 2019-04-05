@@ -1,0 +1,33 @@
+.container-fluid{
+
+}
+.user-tittle{
+    text-align: center;
+    color:#4e646b;
+    padding: 50px 5%;
+    border: solid 1px #4e646b;
+}
+.user-notes{
+    padding: 50px 5%;
+}
+.row-title{
+    color: #fff;
+    background-color: #4e646b;
+    padding: 25px 5%;
+}
+.titleheader{
+    text-align: center;
+    font-weight:600;
+    font-size: 1.2rem;
+}
+.write-notes{
+
+    padding-left: 10%;
+    padding-bottom: 50px;
+}
+a{
+    color: #fff;
+}
+a:hover{
+  color: #c6d1dc;
+}
