@@ -1,3 +1,6 @@
+<?php
+include 'createconnection.php';
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,33 +32,76 @@
 
       </div>
    </div>
+
    <div class="main">
       <div class="col-md-6 col-sm-12 tes">
          <div class="login-form">
             <div class="message">
                Create an account now:
             </div>
-            <form>
+            <form method="POST">
                <div class="form-group">
                   <label>User Name</label>
-                  <input type="text" class="form-control" placeholder="User Name" required>
+                  <input type="text" name="userName" class="form-control" placeholder="User Name" required>
                </div>
                <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control" placeholder="Password" required>
+                  <input type="password" name="userPassword" class="form-control" placeholder="Password" required>
                </div>
                <div class="form-group">
                   <label>Email</label>
-                  <input type="email" class="form-control" placeholder="@email" required>
+                  <input type="email" name="userEmail" class="form-control" placeholder="@email" required>
                </div>
-               <button type="submit" class="btn btn-secondary">Register</button>
+               <button type="submit" name="submit" class="btn btn-secondary">Register</button>
 
-               <button type="submit" class="btn btn-black">
+               <button type="#" class="btn btn-black">
                   <a href="login.php">Login</a></button>
+
+               <!--PHP PART -->
+               <?php
+               if (isset($_POST["submit"])) {
+                  // Create the connection to the database
+                  $con = mysqli_connect("localhost", "leni", "root", "myclue");
+
+                  //store the variables & escape variables for security
+                  $userName      = mysqli_real_escape_string($con, $_POST['userName']);
+                  $userPassword  = mysqli_real_escape_string($con, $_POST['userPassword']);
+                  $userEmail     = mysqli_real_escape_string($con, $_POST['userEmail']);
+
+                  //Sql to be insert into the database
+                  $sql = "INSERT INTO login (userName, userPassword, userEmail) VALUES ('$userName','$userPassword','$userEmail')";
+
+                  //execute the query
+                  mysqli_query($con, $sql);
+
+                  echo "Congratulations $userName , please login in.";
+
+                  // Close the connection
+                  mysqli_close($con);
+               }
+               ?>
+               
             </form>
+
          </div>
       </div>
    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    <!--Jquery Bootstrap Scripts-->
@@ -63,7 +109,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
    <!--End of scripts   -->
-   
+
 </body>
 
 </html>
