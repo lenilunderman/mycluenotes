@@ -61,6 +61,7 @@
                   $sql = "SELECT * FROM login WHERE userEmail='$userEmail' AND userPassword='$userPassword'";
                   //execute the query
                   $result = mysqli_query($con, $sql);
+                  $values = $result->fetch_assoc();
 
                   // check if the sql have only one row with results
                   $count = mysqli_num_rows($result);
@@ -75,10 +76,10 @@
                      // Set session variables
                      $_SESSION["userEmail"] = $userEmail;
                      $_SESSION["userPassword"] = $userPassword;
-                    
+                     $_SESSION["userID"] = $values["ID"];
 
-                     $finfo = $result->fetch_field();
-                     $_SESSION["ID"] = $finfo->ID;
+
+
 
 
                      echo "success";
