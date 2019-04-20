@@ -32,7 +32,9 @@ session_start();
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"]; ?> </div>
+            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"];
+            echo $_SESSION["ID"];
+            ?> </div>
             <!--PHP goes here -->
             <?php
             //connect to the database

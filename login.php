@@ -71,10 +71,14 @@
                      //    $myID = $row["ID"];
                      //    $userEmail = $row["userEmail"];
                      // }
-                     
+
                      // Set session variables
                      $_SESSION["userEmail"] = $userEmail;
                      $_SESSION["userPassword"] = $userPassword;
+                     $_SESSION["ID"] = $ID;
+
+                     $finfo = $result->fetch_field();
+                     $_SESSION["ID"] = $finfo->ID;
 
 
                      echo "success";
