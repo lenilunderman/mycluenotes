@@ -36,38 +36,44 @@
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
                 <h1> View all the notes in your account in one place.</h1><br>
-            <!--Notes from the database goes here-->
+                <!--Notes from the database goes here-->
                 <table class="table table-striped">
-                <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Note</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Title of the Note</td>
-                    <td>Text of the note</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Title of the Note</td>
-                    <td>Text of the note</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                </tr>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Title of the Note</td>
+                            <td>Text of the note</td>
+                            <td>Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Title of the Note</td>
+                            <td>Text of the note</td>
+                            <td>Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>Jacob</td>
+                        </tr>
 
-                </tbody>
+
+                    </tbody>
                 </table>
             </div>
         </div>

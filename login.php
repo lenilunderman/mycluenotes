@@ -55,7 +55,6 @@
                   $userEmail      = trim($_POST["userEmail"]);
                   $userPassword   = trim($_POST["userPassword"]);
 
-
                   //connect to the database
                   $con = mysqli_connect("localhost", "leni", "root", "myclue");
                   //create the query
@@ -67,10 +66,16 @@
                   $count = mysqli_num_rows($result);
 
                   if ($count == 1) {
+
+                     // while ($row = mysqli_fetch_array($sql)) {
+                     //    $myID = $row["ID"];
+                     //    $userEmail = $row["userEmail"];
+                     // }
+                     
                      // Set session variables
                      $_SESSION["userEmail"] = $userEmail;
                      $_SESSION["userPassword"] = $userPassword;
-                     
+
 
                      echo "success";
                      header("location:welcome.php");
@@ -78,9 +83,9 @@
                      echo "Username or Password is incorrect";
                   }
                }
-
-
                ?>
+
+
 
 
 
