@@ -24,6 +24,7 @@ if (isset($_POST["addnote"])) {
 
     //close the connection
     mysqli_close($con);
+    
 }
 ?>
 
@@ -58,7 +59,7 @@ if (isset($_POST["addnote"])) {
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"]; ?></div>
+            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo ucwords($_SESSION["userName"]); ?></div>
 
             <!--PHP goes here -->
             <?php
@@ -75,7 +76,8 @@ if (isset($_POST["addnote"])) {
 
             ?>
 
-            <div class="col-lg-4">You have <strong><?php echo "$num_rows"; ?> notes</strong></div>
+            <div class="col-lg-3">You have <strong><?php echo "$num_rows"; ?> notes</strong></div>
+            <div class="col-lg-1"><button type="submit" class="btn btn-secondary"><a href="records.php">View Notes</a></button></div>
             <div class="col-lg-4">
                 <form method="POST">
                     <button type="submit" name="logout" class="btn btn-secondary">Logout System</button>
@@ -110,7 +112,6 @@ if (isset($_POST["addnote"])) {
                     <button type="submit" class="btn btn-secondary mb-2" name="addnote">Submit</button>
 
                 </form>
-                <button type="submit" class="btn btn-secondary"><a href="records.php">View Notes</a></button>
             </div>
         </div>
     </div>

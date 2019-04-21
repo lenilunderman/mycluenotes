@@ -1,3 +1,7 @@
+<?php
+//create the session and start
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,52 +33,62 @@
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> Welcome: $Username</div>
+            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo ucwords($_SESSION["userName"]); ?></div>
             <div class="col-lg-4"> <button type="submit" class="btn btn-secondary"><a href="welcome.php">Write a new note</a></button></div>
-            <div class="col-lg-4"> <button type="submit" class="btn btn-secondary"><a href="index.php">Logout System</a></button></div>
+            <div class="col-lg-4"> <button type="submit" class="btn btn-secondary" name="logout_records"><a href="index.php" class="logout">Logout System</a></button></div>
+
         </div>
+        
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
-                <h1> View all the notes in your account in one place.</h1><br>
+                <h1 class="text-center"> View all the notes in your account in one place.</h1><br>
+
                 <!--Notes from the database goes here-->
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Type of Note</th>
                             <th scope="col">Note</th>
+                            <th scope="col">View Note</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Title of the Note</td>
-                            <td>Text of the note</td>
-                            <td>Jacob</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>Jacob</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Title of the Note</td>
-                            <td>Text of the note</td>
-                            <td>Jacob</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>Jacob</td>
-                        </tr>
 
+                        <!-- PHP Part -->
+                        <?php
+                        //create a connection to the database
+                        $con = mysqli_connect("localhost", "leni", "root", "myclue");
+                        //select query
+                        $userID = $_SESSION["userID"];
+                        $sql = "SELECT * FROM notes WHERE User_ID='$userID'";
+                        //execute the query
+                        $result = mysqli_query($con, $sql);
 
+                        while ($row = mysqli_fetch_array($result)) {
+                            $User_ID = $row['User_ID'];
+                            $title_note = $row['title_note'];
+                            $type_note = $row['type_note'];
+                            $note = $row['note'];
+
+                            //echo "$User_ID <br>";
+                            //echo "$title_note <br>";
+                            //echo "$type_note <br>";
+                            //echo "$note <br>";
+                            echo "<tr></th>";
+                            echo "<td scope='row'>$title_note</td>";
+                            echo "<td scope='row'>$type_note</td>";
+                            echo "<td scope='row'>$note</td>";
+                            echo "<td scope='row'><a class='text-success' href='view.php?title_note=$title_note'>View Note</a></td>";
+                            echo "<td scope='row'><a class='text-info' href='update.php?title_note=$title_note'>Update</a></td>";
+                            echo "<td scope='row'><a class='text-danger' href='delete.php?note=$note'>Delete</a></td></tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
