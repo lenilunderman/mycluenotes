@@ -1,4 +1,5 @@
 <?php
+//connect to the database
 include 'createconnection.php';
 session_destroy();
 ?>
@@ -30,7 +31,6 @@ session_destroy();
          <div class="textheader">
             Create an account and save all your notes in our service.
          </div>
-
       </div>
    </div>
 
@@ -81,9 +81,7 @@ session_destroy();
                   mysqli_close($con);
                }
                ?>
-
             </form>
-
          </div>
       </div>
    </div>
