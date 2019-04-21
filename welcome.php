@@ -10,19 +10,19 @@ if (isset($_POST["addnote"])) {
     //create a connection to the database
     $con = mysqli_connect("localhost", "leni", "root", "myclue");
 
-//store the variables & escape variables for security
+    //store the variables & escape variables for security
     $title_note     = mysqli_real_escape_string($con, $_POST['title_note']);
     $type_note      = mysqli_real_escape_string($con, $_POST['type_note']);
     $note           = mysqli_real_escape_string($con, $_POST['note']);
 
-//create the SQL query
+    //create the SQL query
     $userID = $_SESSION["userID"];
     $sql = "INSERT INTO notes (title_note,type_note,note, User_ID) VALUES ('$title_note','$type_note','$note','$userID')";
 
-//execute query
+    //execute query
     mysqli_query($con, $sql);
 
-//close the connection
+    //close the connection
     mysqli_close($con);
 }
 ?>
@@ -58,8 +58,8 @@ if (isset($_POST["addnote"])) {
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"];?></div>
-            
+            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"]; ?></div>
+
             <!--PHP goes here -->
             <?php
             //connect to the database
@@ -72,15 +72,15 @@ if (isset($_POST["addnote"])) {
             $user_ID = $_SESSION["userID"];
             $result     = mysqli_query($con, "SELECT * FROM notes WHERE User_ID='$user_ID'");
             $num_rows   = mysqli_num_rows($result);
-            
+
             ?>
 
-            <div class="col-lg-4">You have <?php echo "$num_rows"; ?> notes</div>
+            <div class="col-lg-4">You have <strong><?php echo "$num_rows"; ?> notes</strong></div>
             <div class="col-lg-4">
                 <form method="POST">
-                <button type="submit" name="logout" class="btn btn-secondary">Logout System</button>
+                    <button type="submit" name="logout" class="btn btn-secondary">Logout System</button>
             </div>
-                </form>
+            </form>
 
             <?php
             if (isset($_POST["logout"])) {
@@ -89,7 +89,7 @@ if (isset($_POST["addnote"])) {
                 header("location:index.php");
             }
             ?>
-            
+
         </div>
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
@@ -107,7 +107,7 @@ if (isset($_POST["addnote"])) {
                         <label>Note</label>
                         <textarea class="form-control" name="note" id="textarea" placeholder="Type your note" rows="3" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-secondary" name="addnote">Submit</button>
+                    <button type="submit" class="btn btn-secondary mb-2" name="addnote">Submit</button>
 
                 </form>
                 <button type="submit" class="btn btn-secondary"><a href="records.php">View Notes</a></button>

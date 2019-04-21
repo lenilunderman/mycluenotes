@@ -76,7 +76,7 @@ session_destroy();
                   mysqli_query($con, $sql);
 
                   //echo "Congratulations $userName , please login in.";
-                  echo "<div class='p-3 ml-5 text-primary text-white'>Congratulations $userName , please login in.</div>";
+                  echo "<div class='p-3 d-inline text-primary text-white'>Congratulations $userName , please login in.</div>";
 
                   // Close the connection
                   mysqli_close($con);

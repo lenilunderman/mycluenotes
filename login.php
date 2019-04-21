@@ -70,11 +70,13 @@
                      $_SESSION["userEmail"] = $userEmail;
                      $_SESSION["userPassword"] = $userPassword;
                      $_SESSION["userID"] = $values["ID"];
+                     $_SESSION["userName"] = $values["userName"];
 
                      echo "success";
                      header("location:welcome.php");
                   } else {
-                     echo "Username or Password is incorrect";
+                     //echo "Username or Password is incorrect";
+                     echo "<div class='p-3 d-inline text-danger text-white'>Username or Password is incorrect.</div>";
                   }
                }
                ?>
@@ -90,4 +92,5 @@
    <!--End of scripts   -->
 
 </body>
+
 </html>
