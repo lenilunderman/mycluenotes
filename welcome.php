@@ -1,35 +1,32 @@
 <?php
 //create the session and start
 session_start();
-
+//check if the session is created if not go back to index.html
 if (!isset($_SESSION["userID"])) {
     header("location:index.php");
 }
-
+//check if the button addnote was clicked to not allow add blank on the db
 if (isset($_POST["addnote"])) {
     //create a connection to the database
     $con = mysqli_connect("localhost", "leni", "root", "myclue");
 
-    //store the variables & escape variables for security
+//store the variables & escape variables for security
     $title_note     = mysqli_real_escape_string($con, $_POST['title_note']);
     $type_note      = mysqli_real_escape_string($con, $_POST['type_note']);
     $note           = mysqli_real_escape_string($con, $_POST['note']);
 
-    //create the SQL query
-    //$_SESSION["ID"] = $finfo->ID;
+//create the SQL query
     $userID = $_SESSION["userID"];
     $sql = "INSERT INTO notes (title_note,type_note,note, User_ID) VALUES ('$title_note','$type_note','$note','$userID')";
 
-
-    //execute query
+//execute query
     mysqli_query($con, $sql);
 
-    //close the connection
+//close the connection
     mysqli_close($con);
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -61,26 +58,29 @@ if (isset($_POST["addnote"])) {
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"]; ?> </div>
+            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo $_SESSION["userEmail"];?></div>
+            
             <!--PHP goes here -->
             <?php
             //connect to the database
             $con = mysqli_connect("localhost", "leni", "root", "myclue");
+
             //select the database
             mysqli_select_db($con, "notes");
+
             //execute the query
             $user_ID = $_SESSION["userID"];
             $result     = mysqli_query($con, "SELECT * FROM notes WHERE User_ID='$user_ID'");
             $num_rows   = mysqli_num_rows($result);
+            
             ?>
 
             <div class="col-lg-4">You have <?php echo "$num_rows"; ?> notes</div>
             <div class="col-lg-4">
                 <form method="POST">
-                    <button type="submit" name="logout" class="btn btn-secondary">Logout System</button>
+                <button type="submit" name="logout" class="btn btn-secondary">Logout System</button>
             </div>
-            </form>
-            <!--PHP goes here -->
+                </form>
 
             <?php
             if (isset($_POST["logout"])) {
@@ -88,9 +88,8 @@ if (isset($_POST["addnote"])) {
                 session_destroy();
                 header("location:index.php");
             }
-
-
             ?>
+            
         </div>
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
