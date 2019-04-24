@@ -1,3 +1,33 @@
+<?php
+//create the session to get the ID
+session_start();
+if (!isset($_SESSION['userID'])) {
+    header('location:index.php');
+} else {
+    // create a connection to the database
+    $con = mysqli_connect("localhost", "leni", "root", "myclue");
+    //start the connection
+    mysqli_select_db($con, "notes");
+    //creating and getting the variables
+    $user_ID    = $_SESSION["userID"];
+    $title_note = $_GET['title_note'];
+
+    //create the query to get all the results
+    $sql = "SELECT * FROM notes where title_note='$title_note'";
+    //execute the query
+    $result = mysqli_query($con, $sql);
+    while ($row = mysqli_fetch_array($result)) {
+        $ID_notes   = $row['ID_notes'];
+        $User_ID    = $row['User_ID'];
+        $title_note = $row['title_note'];
+        $type_note  = $row['type_note'];
+        $note       = $row['note'];
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -29,33 +59,28 @@
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> Welcome: $Username</div>
-            <div class="col-lg-4"> </div>
-            <div class="col-lg-4"> <button type="submit" class="btn btn-secondary"><a href="index.php">Logout System</a></button></div>
+            <div class="col-lg-8"><strong>Welcome:</strong><?php echo ucwords($_SESSION["userName"]); ?> </div>
+
+            <div class="col-lg-2"> <button type="submit" class="btn btn-secondary"><a href="records.php">Go back </a></button></div>
+
+            <div class="col-lg-2"> <button type="submit" class="btn btn-secondary"><a href="index.php">Logout System</a></button></div>
+
         </div>
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
                 <h1> Do you remember this note?!</h1><br>
-            <!--Notes from the database goes here-->
+                <!--Notes from the database goes here-->
 
-            <div class="card">
-  <h5 class="card-header">Title of the Note</h5>
-  <div class="card-body">
+                <div class="card">
+                    <h5 class="card-header text-center "> <?php echo ucfirst($title_note) ?> </h5>
+                    <div class="card-body text-center">
 
-    <p class="card-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et pharetra pharetra massa massa.
+                        <p class="card-text">
+                            <?php echo ucfirst($note); ?>
+                        </p>
 
-    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et pharetra pharetra massa massa.With supporting text below as a natural lead-in to additional content.</p>
-
-    <button type="submit" class="btn btn-secondary"><a href="records.php">View other notes</a></button>
-    <button type="submit" class="btn btn-secondary"><a href="records.php">Delete Note</a></button>
-
-  </div>
-</div>
-
-
-
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
