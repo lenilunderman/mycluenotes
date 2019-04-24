@@ -4,7 +4,6 @@ session_start();
 ?>
 
 
-
 <!DOCTYPE html>
 <html>
 
@@ -36,23 +35,19 @@ session_start();
             <div class="col-lg-12 titleheader"> MyClue Notes!</div>
         </div>
         <div class="row user-tittle">
-            <div class="col-lg-4"> <strong>Welcome:</strong> <?php echo ucwords($_SESSION["userName"]); ?></div>
-            <div class="col-lg-4"> <button type="submit" class="btn btn-secondary"><a href="welcome.php">Write a new note</a></button></div>
-            <div class="col-lg-4"> <button type="submit" class="btn btn-secondary" name="logout_records"><a href="index.php" class="logout">Logout System</a></button></div>
+            <div class="col-lg-6"> <strong>Welcome:</strong> <?php echo ucwords($_SESSION["userName"]); ?></div>
+            
+            <div class="col-lg-2"> <button type="submit" class="btn btn-secondary"><a href="records.php">Go back</a></button></div>
+
+            <div class="col-lg-2"> <button type="submit" class="btn btn-secondary"><a href="welcome.php">Write a new note</a></button></div>
+
+            <div class="col-lg-2"> <button type="submit" class="btn btn-secondary" name="logout_records"><a href="index.php" class="logout">Logout System</a></button></div>
 
         </div>
 
         <div class="row user-notes">
             <div class="col-lg-12 write-notes">
-                <h1 class="text-center"> View all the notes in your account in one place.</h1><br>
-                <form method="POST">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control text-center" placeholder="If you don't know the name of the note you can search in here...">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" name="search" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
+                <h1 class="text-center"> Your search.</h1><br>
 
                 <!--Notes from the database goes here-->
                 <table class="table table-striped">
